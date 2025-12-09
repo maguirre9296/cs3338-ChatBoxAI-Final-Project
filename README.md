@@ -19,7 +19,7 @@ This project focuses on **software engineering artifacts** (SDD, SRS, design spe
 
 ---
 
-## System Architecture (High Level)
+## System Architecture 
 
 ChatBox AI follows a typical three-tier architecture:
 
@@ -40,7 +40,7 @@ An additional external AI Provider (e.g., OpenAI / Anthropic) is assumed, abstra
 
 ---
 
-## Features (Planned / Documented)
+## Features 
 
 - Student user can:
   - Register and log in.
@@ -63,12 +63,12 @@ An additional external AI Provider (e.g., OpenAI / Anthropic) is assumed, abstra
 
 ---
 
-## Technologies (Planned)
+## Technologies 
 
 This project is **design-only**, but assumes the following stack in a real implementation:
 
 - **Frontend:** React or Vue.js, HTML, CSS, JavaScript  
-- **Backend:** Node.js / Express *or* Java Spring Boot *or* Python FastAPI  
+- **Backend:** Node.js / Express 
 - **Database:** PostgreSQL  
 - **Containerization:** Docker + `docker-compose`  
 - **Project Management:** Jira (sprint planning, tasks)  
