@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{ChatBox AI \\ \Large Design Specification}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+This Design Specification describes each page, component, and tool used in ChatBox AI, and lists all packages, dependencies, and libraries that would be required in a Dockerized deployment.
+
+\section{Page-by-Page Breakdown}
+
+\subsection{Landing / Login Page}
+\begin{itemize}
+  \item Components: Logo, brief description, login form, register link.
+  \item Actions: User can log in or navigate to registration.
+\end{itemize}
+
+\subsection{Registration Page}
+\begin{itemize}
+  \item Components: Inputs for name, email, password, confirm password.
+  \item Actions: Create account and redirect to the chat dashboard.
+\end{itemize}
+
+\subsection{Chat Dashboard}
+\begin{itemize}
+  \item Components: List of existing chat sessions, button to create new session.
+  \item Actions: Open existing sessions, delete sessions, or start a new one.
+\end{itemize}
+
+\subsection{Chat Screen}
+\begin{itemize}
+  \item Components: Message list, text input, send button, session title, export button.
+  \item Actions: Send messages, receive AI responses, export conversation.
+\end{itemize}
+
+\subsection{Settings Page}
+\begin{itemize}
+  \item Components: Theme toggle, language options, data retention settings.
+\end{itemize}
+
+\subsection{Admin Dashboard}
+\begin{itemize}
+  \item Components: Charts or tables summarizing total users, total sessions, total messages.
+\end{itemize}
+
+\section{Backend and API Design}
+
+\subsection{Example Endpoints}
+\begin{itemize}
+  \item \texttt{POST /api/auth/register}
+  \item \texttt{POST /api/auth/login}
+  \item \texttt{GET /api/sessions}
+  \item \texttt{POST /api/sessions}
+  \item \texttt{POST /api/sessions/\{id\}/messages}
+  \item \texttt{GET /api/admin/metrics}
+\end{itemize}
+
+\section{Dependencies and Libraries}
+
+\subsection{Frontend (Example Stack)}
+\begin{itemize}
+  \item React or Vue.js for the UI.
+  \item CSS framework such as Bootstrap or Material UI.
+  \item Axios or Fetch API for HTTP requests.
+\end{itemize}
+
+\subsection{Backend (Example Stack)}
+\begin{itemize}
+  \item Node.js with Express \textbf{or} Java Spring Boot \textbf{or} Python Flask/FastAPI.
+  \item Libraries for authentication, validation, and logging.
+\end{itemize}
+
+\subsection{Database}
+\begin{itemize}
+  \item PostgreSQL as the primary relational database.
+\end{itemize}
+
+\subsection{Other Tools}
+\begin{itemize}
+  \item Docker and docker-compose for containerization.
+  \item Jira for task management.
+  \item TestRail for test case management and reporting.
+\end{itemize}
+
+\section{Docker Packaging Requirements}
+The Docker image for the backend would include:
+\begin{itemize}
+  \item Runtime (Node.js, Java, or Python).
+  \item Application code.
+  \item Configuration for connecting to the database.
+\end{itemize}
+The frontend image would include:
+\begin{itemize}
+  \item Compiled static assets served via NGINX.
+\end{itemize}
+
+\end{document}
