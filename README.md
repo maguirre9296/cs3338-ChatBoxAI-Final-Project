@@ -22,98 +22,67 @@ System Architecture (Conceptual)
 ChatBox AI would use a basic 3-layer architecture:
 
 1. Frontend (Web UI)
-
-A chat page for typing messages
-
-Login/register screens
-
-Settings and an admin dashboard
-
-Communicates with the backend using REST API calls
+  A chat page for typing messages
+  Login/register screens
+  Settings and an admin dashboard
+  Communicates with the backend using REST API calls
 
 2. Backend (Server)
-
-Handles user authentication
-
-Stores chat sessions and messages
-
-Connects to an external AI provider (through an “AI Adapter”)
+  Handles user authentication
+  Stores chat sessions and messages
+  Connects to an external AI provider (through an “AI Adapter”)
 
 3. Database
+  Stores user accounts
+  Keeps chat history
+  Can run inside a PostgreSQL Docker container
 
-Stores user accounts
-
-Keeps chat history
-
-Can run inside a PostgreSQL Docker container
-
-We also assume a real AI provider (like OpenAI or Anthropic), but only as a placeholder.
-
-Features (Designed for the Assignment)
-Student Features
-
-Register / log in
-
-Start chat sessions
-
-View older sessions
-
-Export a chat (Snapshot 2 feature)
-
+ We also assume a real AI provider (like OpenAI or Anthropic), but only as a placeholder.
+  
+Features 
+  Student Features
+  Register / log in
+  Start chat sessions
+  View older sessions
+  Export a chat (Snapshot 2 feature)
+  
 Admin Features
-
-View total users, sessions, and messages
-
-Basic “system activity” view (conceptual only)
+  View total users, sessions, and messages
+  Basic “system activity” view (conceptual only)
 
 Documentation Included
-
-SDD (Software Design Document)
-
-SRS (Software Requirements Specification)
-
-Design Specification
-
-User Manual / README (LaTeX version)
-
-Snapshot Objectives (1–4)
-
-TestRail run summaries (Snapshots 2, 3, 4)
-
-Workflow diagram
-
+  SDD (Software Design Document)
+  SRS (Software Requirements Specification)
+  Design Specification
+  User Manual / README (LaTeX version)
+  Snapshot Objectives (1–4)
+  TestRail run summaries (Snapshots 2, 3, 4)
+  Workflow diagram
 This covers everything required for the final project.
 
-Technologies (If This Were a Real App)
 
-Even though nothing is implemented, the project assumes:
-
-Frontend: React or Vue
-
-Backend: Node.js + Express
-
-Database: PostgreSQL
-
-Containerization: Docker & docker-compose
-
-Project Management: Jira
-
-Testing: TestRail
-
-Documentation: LaTeX
+Technologies
+  Even though nothing is implemented, the project assumes:
+  Frontend: React or Vue
+  Backend: Node.js + Express
+  Database: PostgreSQL
+  Containerization: Docker & docker-compose
+  Project Management: Jira
+  Testing: TestRail
+  Documentation: LaTeX
 
 Repository Layout
-docs/
- ├── sdd.tex
- ├── srs.tex
- ├── readme.tex
- ├── design_spec.tex
- ├── snapshot_objectives.tex
- ├── testrail_snapshot2.pdf
- ├── testrail_snapshot3.pdf
- ├── testrail_snapshot4.pdf
- ├── workflow_diagram.tex
- └── images/workflow.png
+  docs/
+   ├── sdd.tex
+   ├── srs.tex
+   ├── readme.tex
+   ├── design_spec.tex
+   ├── snapshot_objectives.tex
+   ├── testrail_snapshot2.pdf
+   ├── testrail_snapshot3.pdf
+   ├── testrail_snapshot4.pdf
+   ├── workflow_diagram.tex
+   └── images/workflow.png
 
 docker-compose.yml
 final-project.txt
