@@ -6,7 +6,7 @@ Team:
 - Miguel Aguirre
 
 **Jira Project URL:**  
-- [https://](https://cs3338-group-01.atlassian.net/jira/software/projects/CAG/boards/67)
+- [Jira Link](https://cs3338-group-01.atlassian.net/jira/software/projects/CAG/boards/67)
 
 ---
 
