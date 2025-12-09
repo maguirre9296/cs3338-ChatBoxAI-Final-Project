@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{graphicx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{ChatBox AI – SDD}
+\lhead{Software Design Document}
+\cfoot{\thepage}
+
+\title{ChatBox AI \\ \Large Software Design Document (SDD)}
+\author{Your Name \\ California State University, Los Angeles}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+%--------------------------------------------------
+\section*{Version History}
+\addcontentsline{toc}{section}{Version History}
+
+\begin{longtable}{|p{2.5cm}|p{3cm}|p{6cm}|p{3cm}|}
+\hline
+\textbf{Version} & \textbf{Date} & \textbf{Description} & \textbf{Author} \\ \hline
+1.0 & Snapshot 1 & Initial draft of SDD: architecture, basic UI description & Your Name \\ \hline
+1.1 & Snapshot 2 & Added design for large feature \emph{Conversation History and Export} & Your Name \\ \hline
+1.2 & Snapshot 3 & Added design for \emph{Multi-Channel Support} and refined data model & Your Name \\ \hline
+1.3 & Snapshot 4 & Final polishing, added future work and updated workflow & Your Name \\ \hline
+\end{longtable}
+
+\newpage
+
+%==================================================
+\section{Introduction}
+
+\subsection{Purpose}
+The purpose of this Software Design Document (SDD) is to describe the overall architecture, components, and detailed design of \textbf{ChatBox AI}, a web-based intelligent chat assistant targeted at university students. This document is intended to guide the hypothetical implementation, testing, and maintenance activities throughout the 12-month project timeline.
+
+\subsection{Intended Audience}
+This document is intended for:
+\begin{itemize}
+  \item The course instructor reviewing the project design.
+  \item Team members responsible for implementation, testing, and documentation.
+  \item Future student teams who may want to extend or reuse this design.
+\end{itemize}
+
+\subsection{Scope and Overview}
+ChatBox AI will provide:
+\begin{itemize}
+  \item A web UI for students to ask questions in natural language.
+  \item Backend services to route messages to an AI model.
+  \item Persistent storage of conversation history and user profiles.
+  \item Basic admin tools to view usage metrics and manage configuration.
+\end{itemize}
+\noindent
+This document explains system architecture, UI structure, database concepts, and integration points with external tools (Docker, TestRail, Jira).
+
+%==================================================
+\section{System Architecture}
+
+\subsection{High-Level Architecture Overview}
+At a high level, ChatBox AI follows a typical three-tier architecture:
+\begin{itemize}
+  \item \textbf{Client (Frontend):} Web browser rendering a single-page application or simple web interface.
+  \item \textbf{Application Server (Backend):} Exposes REST APIs for chat sessions, user accounts, and admin features.
+  \item \textbf{Data Layer:} Relational database for user and chat data; optional vector store for AI context.
+\end{itemize}
+
+The system will be containerized using Docker and composed using \texttt{docker-compose}. A reverse proxy (e.g., NGINX) may sit in front of the frontend and backend for routing.
+
+\subsection{Component Diagram (Conceptual)}
+Key components include:
+\begin{itemize}
+  \item \textbf{Web UI} – Chat interface, login/register, settings, admin dashboard.
+  \item \textbf{API Gateway / Backend Service} – Handles authentication, routing, rate limiting, and business logic.
+  \item \textbf{AI Adapter} – Encapsulates calls to an external Large Language Model (LLM) provider.
+  \item \textbf{Database} – Stores users, sessions, messages, and configuration.
+  \item \textbf{Logging and Monitoring} – Captures logs, basic metrics (request count, response times).
+\end{itemize}
+
+\subsection{Deployment View}
+In a Docker-based deployment:
+\begin{itemize}
+  \item One container runs the \textbf{frontend} (static assets served via NGINX).
+  \item One container runs the \textbf{backend service} (e.g., Node.js, Python, or Java Spring Boot).
+  \item One container runs the \textbf{database} (e.g., PostgreSQL).
+  \item Optionally, one container runs a \textbf{vector database} (e.g., a simple text index or placeholder for a real vector store).
+\end{itemize}
+
+The \texttt{docker-compose.yml} file in the repository describes these services, networks, and environment variables at a high level.
+
+%==================================================
+\section{Detailed Design}
+
+\subsection{Backend Modules}
+
+\subsubsection{Authentication Module}
+\begin{itemize}
+  \item Handles sign up, login, and token-based authentication.
+  \item Stores password hashes in the database (no plain-text storage).
+\end{itemize}
+
+\subsubsection{Chat Session Module}
+\begin{itemize}
+  \item Creates chat sessions for each user.
+  \item Stores each message (user and AI) with timestamps.
+  \item Supports retrieving previous sessions and exporting conversation history (introduced in Snapshot 2).
+\end{itemize}
+
+\subsubsection{AI Adapter Module}
+\begin{itemize}
+  \item Provides a single interface \texttt{sendMessageToAI(prompt, context)}.
+  \item Abstracts away underlying AI provider (e.g., OpenAI, Anthropic).
+  \item Allows switching providers without changing core business logic.
+\end{itemize}
+
+\subsubsection{Admin Module}
+\begin{itemize}
+  \item Provides admin-only endpoints to view usage statistics.
+  \item Helps simulate monitoring and logging features.
+\end{itemize}
+
+\subsection{Data Model (Conceptual)}
+Core entities:
+\begin{itemize}
+  \item \textbf{User}: id, name, email, hashed password, role (student/admin).
+  \item \textbf{ChatSession}: id, user\_id, title, created\_at.
+  \item \textbf{Message}: id, session\_id, sender (user/ai), content, created\_at.
+  \item \textbf{Configuration}: key, value (for adjustable app settings).
+\end{itemize}
+
+These tables are not actually implemented in code, but they are described here to show how the system would be structured in a real implementation.
+
+%==================================================
+\section{User Interface Design}
+
+\subsection{Main User Screens}
+The main UI screens include:
+\begin{itemize}
+  \item \textbf{Login / Register Page}: Basic email+password form.
+  \item \textbf{Chat Dashboard}: List of previous chat sessions, button to start a new chat.
+  \item \textbf{Chat Screen}: Chat window with messages, input box, send button, and options to rename the session or export conversation.
+  \item \textbf{Settings Page}: Toggles for theme (dark/light), language, and data retention preferences.
+  \item \textbf{Admin Dashboard}: High-level view of total users, total messages, and average session length.
+\end{itemize}
+
+\subsection{UX Considerations}
+\begin{itemize}
+  \item Responsive design (works on desktop and mobile).
+  \item Clear distinction between user messages and AI responses.
+  \item Accessible fonts and contrast ratios.
+  \item Loading indicators while the AI is responding.
+\end{itemize}
+
+%==================================================
+\section{Workflow and Integration with Tools}
+
+\subsection{Workflow Overview}
+The high-level workflow is:
+\begin{enumerate}
+  \item User visits the ChatBox AI web UI and signs in.
+  \item User creates or opens a chat session.
+  \item User message is sent to the backend API.
+  \item Backend builds context, calls the AI Adapter.
+  \item AI response is returned, stored in the database, and displayed in the UI.
+  \item Logs and metrics are recorded for future analysis.
+\end{enumerate}
+
+This workflow is visualized in the separate \texttt{workflow\_diagram.tex} document, which includes a figure or diagram (e.g., PNG) stored under \texttt{images/workflow.png}.
+
+\subsection{Docker Integration}
+\begin{itemize}
+  \item The system is described in a \texttt{docker-compose.yml} file.
+  \item Services: \texttt{frontend}, \texttt{backend}, \texttt{db}, and optional \texttt{proxy}.
+  \item Environment variables define database connection strings and API keys (for a real implementation).
+\end{itemize}
+
+\subsection{Jira and TestRail}
+\begin{itemize}
+  \item Jira is used to plan sprints and tasks for each snapshot.
+  \item TestRail is used to document test cases and test runs for Snapshots 2, 3, and 4.
+  \item For this course project, we create test reports and export them as documents stored in this GitHub repository.
+\end{itemize}
+
+%==================================================
+\section{Glossary}
+
+\begin{description}
+  \item[AI] Artificial Intelligence.
+  \item[LLM] Large Language Model.
+  \item[UI/UX] User Interface / User Experience.
+  \item[API] Application Programming Interface.
+  \item[DB] Database.
+\end{description}
+
+%==================================================
+\section{References}
+
+\begin{itemize}
+  \item Course handouts and project description.
+  \item Official documentation of Docker and docker-compose.
+  \item Example articles and tutorials on AI chat applications.
+\end{itemize}
+
+\end{document}
