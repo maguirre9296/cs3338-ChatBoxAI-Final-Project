@@ -1,102 +1,127 @@
-# CS 3338 Final Project – ChatBox AI
+CS 3338 Final Project – ChatBox AI
+Team Members
 
-Team: 
-- Robert Melena
-- Robert Guiterrez
-- Miguel Aguirre
+Robert Melena
 
-**Jira Project URL:**  
-- [Jira Link](https://cs3338-group-01.atlassian.net/jira/software/projects/CAG/boards/67)
+Robert Guiterrez
 
----
+Miguel Aguirre
 
-## Overview
+Jira Project URL:
+https://cs3338-group-01.atlassian.net/jira/software/projects/CAG/boards/67
 
-ChatBox AI is a documentation-based final project for CS 3338 that describes the design of a web-based AI chat assistant for university students.
+Overview
 
-The goal of ChatBox AI is to show how a modern AI chatbot could be structured using a web frontend, backend API, database, Dockerized deployment, and integrations with tools like Jira and TestRail.  
-This project focuses on **software engineering artifacts** (SDD, SRS, design spec, workflow, test plans) rather than a fully implemented system.
+ChatBox AI is our final project for CS 3338.
+Instead of building a full working application, this project focuses on learning and documenting the entire software engineering process.
 
----
+The idea behind ChatBox AI is a simple AI chat assistant for students. The goal is to show how a project like this would work in the real world using a front end, a back end, a database, Docker, and project management tools like Jira and TestRail.
 
-## System Architecture 
+System Architecture (Conceptual)
 
-ChatBox AI follows a typical three-tier architecture:
+ChatBox AI would use a basic 3-layer architecture:
 
-1. Frontend (Web UI)**  
-   - Provides a chat interface, login/registration, settings, and an admin dashboard.
-   - Connects to the backend via REST APIs.
+1. Frontend (Web UI)
 
-2. Backend (Application Server)**  
-   - Handles authentication, chat session management, and communication with the AI provider.
-   - Exposes APIs for students and admin users.
-   - Includes an “AI adapter” layer to talk to an external LLM API.
+A chat page for typing messages
 
-3. Database (Data Layer)**  
-   - Stores users, chat sessions, and messages.
-   - Can be run as a PostgreSQL container in Docker.
+Login/register screens
 
-An additional external AI Provider (e.g., OpenAI / Anthropic) is assumed, abstracted behind the AI adapter.
+Settings and an admin dashboard
 
----
+Communicates with the backend using REST API calls
 
-## Features 
+2. Backend (Server)
 
-- Student user can:
-  - Register and log in.
-  - Start new chat sessions with ChatBox AI.
-  - View past chat sessions.
-  - (Snapshot 2) Export a conversation history.
+Handles user authentication
 
-- Admin user can:
-  - View basic usage statistics (total users, sessions, messages).
-  - Monitor overall system health (conceptually, via metrics).
+Stores chat sessions and messages
 
-- Documentation includes:
-  - Software Design Document (SDD).
-  - Software Requirements Specification (SRS).
-  - User Manual / README (LaTeX).
-  - Design Specification.
-  - Snapshot Objective document (Snapshots 1–4).
-  - TestRail run summaries for Snapshots 2, 3, and 4.
-  - Workflow diagram.
+Connects to an external AI provider (through an “AI Adapter”)
 
----
+3. Database
 
-## Technologies 
+Stores user accounts
 
-This project is **design-only**, but assumes the following stack in a real implementation:
+Keeps chat history
 
-- **Frontend:** React or Vue.js, HTML, CSS, JavaScript  
-- **Backend:** Node.js / Express 
-- **Database:** PostgreSQL  
-- **Containerization:** Docker + `docker-compose`  
-- **Project Management:** Jira (sprint planning, tasks)  
-- **Testing Management:** TestRail (test cases + reports)  
-- **Documentation:** LaTeX (`.tex` files in `docs/`)
+Can run inside a PostgreSQL Docker container
 
----
+We also assume a real AI provider (like OpenAI or Anthropic), but only as a placeholder.
 
-## Repository Layout
+Features (Designed for the Assignment)
+Student Features
 
-- `docs/sdd.tex` – Software Design Document  
-- `docs/srs.tex` – Software Requirements Specification  
-- `docs/readme.tex` – User manual / detailed README (LaTeX)  
-- `docs/design_spec.tex` – Design specification of pages/components  
-- `docs/snapshot_objectives.tex` – Snapshot 1–4 objectives & reflections  
-- `docs/testrail_snapshot2.tex` – TestRail summary for Snapshot 2  
-- `docs/testrail_snapshot3.tex` – TestRail summary for Snapshot 3  
-- `docs/testrail_snapshot4.tex` – TestRail summary for Snapshot 4  
-- `docs/workflow_diagram.tex` – LaTeX wrapper for the overall workflow diagram  
-- `docs/images/workflow.png` – High-level architecture diagram  
-- `docker-compose.yml` – Conceptual Docker setup for frontend, backend, DB  
-- `final-project.txt` – Short project description text file  
-- `README.md` – This file (GitHub landing page)
+Register / log in
 
----
+Start chat sessions
 
-## How to View the LaTeX Documents
+View older sessions
 
-1. Navigate to the `docs/` folder.  
-2. Open a `.tex` file in a LaTeX editor (Overleaf, TeXShop, etc.).  
-3. Compile to PDF to view the formatted document.
+Export a chat (Snapshot 2 feature)
+
+Admin Features
+
+View total users, sessions, and messages
+
+Basic “system activity” view (conceptual only)
+
+Documentation Included
+
+SDD (Software Design Document)
+
+SRS (Software Requirements Specification)
+
+Design Specification
+
+User Manual / README (LaTeX version)
+
+Snapshot Objectives (1–4)
+
+TestRail run summaries (Snapshots 2, 3, 4)
+
+Workflow diagram
+
+This covers everything required for the final project.
+
+Technologies (If This Were a Real App)
+
+Even though nothing is implemented, the project assumes:
+
+Frontend: React or Vue
+
+Backend: Node.js + Express
+
+Database: PostgreSQL
+
+Containerization: Docker & docker-compose
+
+Project Management: Jira
+
+Testing: TestRail
+
+Documentation: LaTeX
+
+Repository Layout
+docs/
+ ├── sdd.tex
+ ├── srs.tex
+ ├── readme.tex
+ ├── design_spec.tex
+ ├── snapshot_objectives.tex
+ ├── testrail_snapshot2.pdf
+ ├── testrail_snapshot3.pdf
+ ├── testrail_snapshot4.pdf
+ ├── workflow_diagram.tex
+ └── images/workflow.png
+
+docker-compose.yml
+final-project.txt
+README.md  (this file)
+
+Viewing the LaTeX Documents (look below)
+
+Go to the docs/ folder
+Choose any .tex file
+Open it in Overleaf, TeXShop, or any LaTeX editor
+Compile to PDF to see the formatted version
