@@ -5,11 +5,13 @@
 \usepackage{enumitem}
 
 \title{ChatBox AI \\ \Large Design Specification}
-\author{Your Name}
+\author{Robert Melena, Miguel Aguirre, Robert Guiterrez}
 \date{\today}
 
 \begin{document}
 \maketitle
+\thispagestyle{empty}
+\newpage
 
 \section{Purpose}
 This Design Specification describes each page, component, and tool used in ChatBox AI, and lists all packages, dependencies, and libraries that would be required in a Dockerized deployment.
@@ -73,7 +75,7 @@ This Design Specification describes each page, component, and tool used in ChatB
 
 \subsection{Backend (Example Stack)}
 \begin{itemize}
-  \item Node.js with Express \textbf{or} Java Spring Boot \textbf{or} Python Flask/FastAPI.
+  \item Node.js with Express.
   \item Libraries for authentication, validation, and logging.
 \end{itemize}
 
@@ -92,7 +94,7 @@ This Design Specification describes each page, component, and tool used in ChatB
 \section{Docker Packaging Requirements}
 The Docker image for the backend would include:
 \begin{itemize}
-  \item Runtime (Node.js, Java, or Python).
+  \item Runtime Node.js.
   \item Application code.
   \item Configuration for connecting to the database.
 \end{itemize}
