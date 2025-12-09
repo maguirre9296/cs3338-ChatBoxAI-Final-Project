@@ -1,110 +1,83 @@
-CS 3338 Final Project – ChatBox AI
-Team Members
+# CS 3338 Final Project – ChatBox AI
 
-Robert Melena
+## Team Members
+- Robert Melena  
+- Robert Guiterrez  
+- Miguel Aguirre  
 
-Robert Guiterrez
-
-Miguel Aguirre
-
-Jira Project URL:
+**Jira Project URL:**  
 https://cs3338-group-01.atlassian.net/jira/software/projects/CAG/boards/67
 
-Overview
+---
 
-ChatBox AI is our final project for CS 3338.
-Instead of building a full working app, this project focuses on understanding and documenting the full software engineering process.
+## Overview
 
-Our idea is to design a simple AI chat assistant made for students. The goal is to show how a real system like this could be built using a frontend, backend, database, Docker, and project management/testing tools such as Jira and TestRail.
+ChatBox AI is our final project for CS 3338. This project focuses on understanding and documenting the full software engineering process.
 
-System Architecture (Conceptual)
+The idea behind ChatBox AI is a simple AI chat assistant for students. This project shows how a system like this could be structured using a frontend, backend, database, Docker, Jira, and TestRail.
 
-ChatBox AI is based on a simple 3-layer architecture:
+---
 
-1. Frontend (Web UI)
+## System Architecture (Conceptual)
 
-Chat interface for users
+### Frontend (Web UI)
+- Chat message interface  
+- Login / register  
+- Settings page  
+- Admin dashboard  
+- Communicates with backend using REST APIs  
 
-Login/register pages
+### Backend (Server)
+- Handles authentication  
+- Stores chat sessions + messages  
+- Connects to an AI provider using an **AI Adapter**  
 
-Settings and a small admin dashboard
+### Database
+- Stores users  
+- Stores chat history  
+- Would run in PostgreSQL via Docker  
 
-Talks to the backend through REST API calls
+---
 
-2. Backend (Server)
+## Features
 
-Handles login + authentication
+### Student Features
+- Register and log in  
+- Start chat sessions  
+- View older sessions  
+- Export chat history *(Snapshot 2)*  
 
-Manages chat sessions and messages
+### Admin Features
+- View total users  
+- View total chat sessions and messages  
+- Basic system activity overview  
 
-Sends user messages to an external AI model using an AI Adapter
+### Documentation Included
+- Software Design Document (SDD)  
+- Software Requirements Specification (SRS)  
+- User Manual (LaTeX)  
+- Design Specification  
+- Snapshot Objectives (1–4)  
+- TestRail PDF reports (Snapshots 2, 3, 4)  
+- Workflow diagram  
 
-3. Database (PostgreSQL)
+---
 
-Stores users
+## Technologies (Assumed)
 
-Saves chat history
+- Frontend: React or Vue  
+- Backend: Node.js + Express  
+- Database: PostgreSQL  
+- Containers: Docker + docker-compose  
+- Task Management: Jira  
+- Testing: TestRail  
+- Documentation: LaTeX  
 
-Would run in a PostgreSQL Docker container
+---
 
-A real AI provider (OpenAI, Anthropic, etc.) is assumed, but only conceptually.
+## Repository Layout
 
-Features
-Student Features
-
-Register and log in
-
-Start new chat sessions
-
-View past sessions
-
-Export conversation history (Snapshot 2 feature)
-
-Admin Features
-
-View total users
-
-View number of chat sessions and messages
-
-Basic “system activity” overview
-
-Documentation Provided
-
-The repo includes all required CS 3338 final project documents:
-
-SDD – Software Design Document
-
-SRS – Software Requirements Specification
-
-Design Specification
-
-User Manual (LaTeX)
-
-Snapshot Objectives (Snapshots 1–4)
-
-TestRail PDF reports for Snapshots 2, 3, and 4
-
-Workflow diagram
-
-Technologies (Assumed for a Real Implementation)
-
-Even though nothing is fully coded, the project assumes the following stack:
-
-Frontend: React or Vue
-
-Backend: Node.js + Express
-
-Database: PostgreSQL
-
-Containers: Docker + docker-compose
-
-Task Management: Jira
-
-Testing: TestRail
-
-Documentation: LaTeX
-
-Repository Layout
+```text
 docs/
  ├── design_spec.tex
  ├── readme.tex
@@ -115,18 +88,14 @@ docs/
  ├── testrail_snapshot3.pdf
  ├── testrail_snapshot4.pdf
  ├── workflow_diagram.tex
- └── images/workflow.png
+ └── images/
+      └── workflow.png
 
 docker-compose.yml
 final-project.txt
-README.md   (this file)
+README.md
 
-Viewing the LaTeX Documents
-
-Open the docs/ folder
-
-Select any .tex document
-
+Go to the docs/ folder
+Choose any .tex file
 Open it in Overleaf, TeXShop, or another LaTeX editor
-
-Compile to generate the PDF
+Compile to PDF
